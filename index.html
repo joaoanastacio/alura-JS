@@ -6,6 +6,8 @@
 		<link rel="icon" href="favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<script src="js/table.js" defer></script>
+		<script src="js/form.js" defer></script>
 	</head>
 	<body>
 		<header>
@@ -69,6 +71,8 @@
 			<!-- Section com formulário para adicionar novos pacientes -->
 			<section class="container">
 				<h2 id="titulo-form">Adicionar novo paciente</h2>
+				<ul id="mensagem-erro">
+				</ul>
 				<form id="form-adicionar">
 					<div class="grupo">
 						<label for="nome">Nome:</label>
@@ -91,8 +95,5 @@
 				</form>
 			</section> 
 		</main>
-
-		<script src="js/table.js"></script>
-		<script src="js/form.js"></script>
 	</body>
 </html>

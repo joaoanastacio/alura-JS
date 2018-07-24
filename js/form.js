@@ -18,8 +18,23 @@ button.addEventListener("click", function (event){
 
     // Recebendo a Tr criada
     let trPaciente = criarTr(paciente);
+    var erro = validaPaciente(paciente);
+
+    // Validação do paciente!!!
+    if(!validaPaciente(paciente)) {
+        var erros = validaPaciente(paciente);
+
+        if (erros.length > 0){
+            
+            exibeMensagemErro(erros);
+
+            return;
+        }
+
+    }
 
     // Capturando o tbody onde todos os tr's ficam e adicionando a tr na tabela
+    // Adicionando o paciente na tabela
     let tabela = document.querySelector("#tabela-pacientes");
     tabela.appendChild(trPaciente);
 
@@ -68,4 +83,36 @@ function criarTd (dado, classe) {
     td.classList.add(classe);
 
     return td;
+}
+
+// Function para fazer as validações dos novos pacientes que forem criados
+function validaPaciente(paciente) {
+
+    // Criando um array de erros
+    var erros = [];
+
+     // Adicionando uma String ao array caso for true
+    if(!validaPeso(paciente.massa)) erros.push("Peso inválido");
+
+    // Adicionando uma String ao array caso for true
+    if(!validaAltura(paciente.altura)) erros.push("Altura inválida");
+
+    // Retornando o array na função
+    return erros;
+}
+
+// Fuction de exibição de mensagens de erro
+function exibeMensagemErro(erros){
+
+    // Pegando a ul do HTML
+    let ul = document.querySelector("#mensagem-erro");
+
+    erros.forEach(function (erro){
+
+        let li = document.createElement("li");
+        li.textContent = erro;
+        ul.appendChild(li);
+    });
+
+    return null;
 }

@@ -18,23 +18,41 @@ for(i = 0; i < paciente.length; i++) {
         calcularIMC(parseFloat(massa),parseFloat(altura)).toString();
     
     // Validação para testar a utilização da propriedade JS .style (má prática)
-    let massaValida = true;
-    let alturaValida = true;
+    let massaValida = validaPeso(massa);
+    let alturaValida = validaPeso(altura);
 
-    if (massa <= 0 || massa >= 1000) {
-        massaValido = false;
+    if (!massaValida) {
+        massaValida = false;
         massa.textContent = "Peso inválido";
 
         // Chamando a classe criada no CSS para estilizar o elemento do DOM
         paciente[i].classList.add("altura-massa-invalido");
     }
 
-    if (altura <= 0 || altura >= 3.00) {
+    if (!alturaValida) {
         alturaValida = false;
         altura.textContent = "Altura inválida";
 
         // Chamando a classe criada no CSS para estilizar o elemento do DOM
         paciente[i].classList.add("altura-massa-invalido");
+    }
+
+    // Fuction que verifica o peso e retorna um true ou false
+    function validaPeso(massa) {
+        if (massa >= 0 && massa < 255) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Function que verifica a altura e retorna true ou false
+    function validaAltura(altura) {
+        if(altura >= 0 && altura <= 3.00) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
